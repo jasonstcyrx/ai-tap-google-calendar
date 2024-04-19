@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#", 
+  "title": "Clear a Primary Calendar",
+  "description": "Clears a primary calendar by deleting all events associated with the primary calendar of an account.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for clearing a primary calendar",
+      "value": "/calendar/v3/calendars/{calendarId}/clear"
+    },
+    "method": {
+      "type": "string", 
+      "enum": ["POST"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": [],
+      "description": "No request body needed"
+    },
+    "body": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "queryParameters": {
+      "type": "object", 
+      "properties": {},
+      "required": []
+    },
+    "pathParameters": {
+      "type": "object",
+      "properties": {
+        "calendarId": {
+          "type": "string",
+          "description": "Calendar identifier or 'primary' keyword for primary calendar"
+        }
+      },
+      "required": ["calendarId"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "required": ["endpoint", "method", "headers", "pathParameters", "response"],
+  "additionalProperties": false
+}

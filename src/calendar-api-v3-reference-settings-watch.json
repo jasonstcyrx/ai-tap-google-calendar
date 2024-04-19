@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Watch Settings",
+  "description": "Watch for changes to Google Calendar Settings resources.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for watching settings changes",
+      "const": "https://www.googleapis.com/calendar/v3/users/me/settings/watch"
+    },
+    "method": {
+      "type": "string",
+      "const": "POST",
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": [
+        "Authorization"
+      ]
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A UUID or similar unique string that identifies this channel."
+        },
+        "token": {
+          "type": "string",
+          "description": "An arbitrary string delivered to the target address with each notification delivered over this channel."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of delivery mechanism used for this channel. Should be 'web_hook' or 'webhook'."
+        },
+        "address": {
+          "type": "string",
+          "description": "The address where notifications are delivered for this channel."
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "ttl": {
+              "type": "string",
+              "description": "The time-to-live in seconds for the notification channel."
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "address"
+      ]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Identifies this as a notification channel used to watch for changes.",
+          "const": "api#channel"
+        },
+        "id": {
+          "type": "string",
+          "description": "A UUID or similar unique string that identifies this channel."
+        },
+        "resourceId": {
+          "type": "string", 
+          "description": "An opaque ID that identifies the resource being watched on this channel."
+        },
+        "resourceUri": {
+          "type": "string",
+          "description": "A version-specific identifier for the watched resource."
+        },
+        "token": {
+          "type": "string",
+          "description": "An arbitrary string delivered to the target address with each notification."
+        },
+        "expiration": {
+          "type": "integer",
+          "description": "Date and time of notification channel expiration, expressed as a Unix timestamp in milliseconds."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "resourceId",
+        "resourceUri"
+      ]
+    }
+  },
+  "required": [
+    "endpoint",
+    "method", 
+    "headers",
+    "response"
+  ]
+}

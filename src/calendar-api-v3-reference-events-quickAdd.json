@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Events: quickAdd",
+  "description": "Creates an event based on a simple text string.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for creating a quick event",
+      "value": "/calendar/v3/calendars/{calendarId}/events/quickAdd"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["POST"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": [],
+      "description": "No request body for this method"
+    },
+    "body": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The text describing the event to be created."
+        },
+        "sendNotifications": {
+          "type": "boolean",
+          "description": "Deprecated. Please use sendUpdates instead. Whether to send notifications about the creation of the event."
+        },
+        "sendUpdates": {
+          "type": "string",
+          "description": "Guests who should receive notifications about the creation of the new event.",
+          "enum": ["all", "externalOnly", "none"]
+        }
+      },
+      "required": ["text"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "$ref": "#/components/schemas/Event"
+      }
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"]
+}

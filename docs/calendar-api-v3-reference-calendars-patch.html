@@ -1,0 +1,249 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Calendars: patch
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Updates metadata for a calendar. This method supports patch semantics. Note that each patch request consumes three quota units; prefer using a get followed by an update. The field values you specify replace the existing values. Fields that you don't specify in the request remain unchanged. Array fields, if specified, overwrite the existing arrays; this discards any previous array elements.
+Try it now.
+
+
+
+
+
+  Request
+  HTTP request
+PATCH https://www.googleapis.com/calendar/v3/calendars/calendarId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with the following scope:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+
+
+
+  In the request body, supply the relevant portions of a Calendars resource, according to the rules of patch semantics.
+
+
+
+
+
+  Response
+
+  If successful, this method returns a Calendars resource in the response body.
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

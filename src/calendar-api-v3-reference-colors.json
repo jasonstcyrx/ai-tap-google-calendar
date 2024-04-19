@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Calendar API - Colors",
+  "description": "A global palette of calendar and event colors, mapping color IDs to their definitions.",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "Type of the resource (\"calendar#colors\").",
+      "const": "calendar#colors"
+    },
+    "updated": {
+      "type": "string",
+      "description": "Last modification time of the color palette (as an RFC3339 timestamp).",
+      "format": "date-time"
+    },
+    "calendar": {
+      "type": "object",
+      "description": "A global palette of calendar colors, mapping from the color ID to its definition.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "background": {
+            "type": "string",
+            "description": "The background color associated with this color definition."
+          },
+          "foreground": {
+            "type": "string",
+            "description": "The foreground color that can be used to write on top of a background with the 'background' color."
+          }
+        },
+        "required": ["background", "foreground"]
+      }
+    },
+    "event": {
+      "type": "object",
+      "description": "A global palette of event colors, mapping from the color ID to its definition.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "background": {
+            "type": "string",
+            "description": "The background color associated with this color definition."
+          },
+          "foreground": {
+            "type": "string",
+            "description": "The foreground color that can be used to write on top of a background with the 'background' color."
+          }
+        },
+        "required": ["background", "foreground"]
+      }
+    }
+  },
+  "required": ["kind", "updated", "calendar", "event"]
+}

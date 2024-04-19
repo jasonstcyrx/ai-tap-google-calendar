@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Workspace Calendar API Downloads",
+  "description": "This endpoint provides documentation and sample code for various client libraries to integrate with the Google Workspace Calendar API.",
+  "type": "object",
+  "properties": {
+    "documentation": {
+      "type": "object",
+      "properties": {
+        "java": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for Java"
+        },
+        "javascript": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for JavaScript"
+        },
+        "dotnet": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for .NET"
+        },
+        "objectiveC": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for Objective-C for REST"
+        },
+        "php": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for PHP"
+        },
+        "python": {
+          "type": "string",
+          "description": "Link to documentation for Google API Client Library for Python"
+        }
+      },
+      "required": [
+        "java",
+        "javascript",
+        "dotnet",
+        "objectiveC",
+        "php",
+        "python"
+      ]
+    },
+    "samples": {
+      "type": "object",
+      "properties": {
+        "java": {
+          "type": "string",
+          "description": "Link to Java samples"
+        },
+        "javascript": {
+          "type": "string",
+          "description": "Link to JavaScript samples"
+        },
+        "dotnet": {
+          "type": "string",
+          "description": "Link to .NET samples"
+        },
+        "objectiveC": {
+          "type": "string",
+          "description": "Link to Objective-C samples"
+        },
+        "php": {
+          "type": "string",
+          "description": "Link to PHP samples"
+        },
+        "python": {
+          "type": "string",
+          "description": "Link to Python samples"
+        }
+      },
+      "required": [
+        "java",
+        "javascript",
+        "dotnet",
+        "objectiveC",
+        "php",
+        "python"
+      ]
+    },
+    "earlyStageLibraries": {
+      "type": "object",
+      "properties": {
+        "documentation": {
+          "type": "object",
+          "properties": {
+            "dart": {
+              "type": "string",
+              "description": "Link to documentation for Google APIs Client Libraries for Dart (beta)"
+            },
+            "go": {
+              "type": "string",
+              "description": "Link to documentation for Google API Client Library for Go (alpha)"
+            },
+            "nodejs": {
+              "type": "string",
+              "description": "Link to documentation for Google API Client Library for Node.js (alpha)"
+            },
+            "ruby": {
+              "type": "string",
+              "description": "Link to documentation for Google API Client Library for Ruby (alpha)"
+            }
+          },
+          "required": [
+            "dart",
+            "go",
+            "nodejs",
+            "ruby"
+          ]
+        },
+        "samples": {
+          "type": "object",
+          "properties": {
+            "dart": {
+              "type": "string",
+              "description": "Link to Dart samples"
+            },
+            "go": {
+              "type": "string",
+              "description": "Link to Go samples"
+            },
+            "nodejs": {
+              "type": "string",
+              "description": "Link to Node.js samples"
+            },
+            "ruby": {
+              "type": "string",
+              "description": "Link to Ruby samples"
+            }
+          },
+          "required": [
+            "dart",
+            "go", 
+            "nodejs",
+            "ruby"
+          ]
+        }
+      },
+      "required": [
+        "documentation",
+        "samples"
+      ]
+    }
+  },
+  "required": [
+    "documentation",
+    "samples",
+    "earlyStageLibraries"
+  ]
+}

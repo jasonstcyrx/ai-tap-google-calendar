@@ -1,0 +1,318 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Events: get
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Authorization optional.
+
+Returns an event based on its Google Calendar ID. To retrieve an event using its iCalendar ID, call the events.list method using the iCalUID parameter.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+GET https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+      
+        eventId
+        string
+        
+          Event identifier.
+
+
+        
+      
+    
+      Optional query parameters
+    
+      
+        alwaysIncludeEmail
+        boolean
+        
+          Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+
+
+        
+      
+      
+        maxAttendees
+        integer
+        
+          The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+
+
+        
+      
+      
+        timeZone
+        string
+        
+          Time zone used in the response. Optional. The default is the time zone of the calendar.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request allows authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar.readonly
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.events.readonly
+      https://www.googleapis.com/auth/calendar.events
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns an Events resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.Event;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Retrieve an eventEvent event = service.events().get('primary', "eventId").execute();System.out.println(event.getSummary());
+
+
+  
+  Uses the Python client library.
+  event = service.events().get(calendarId='primary', eventId='eventId').execute()print event['summary']
+
+
+  
+  Uses the PHP client library.
+  $event = $service->events->get('primary', "eventId");echo $event->getSummary();
+
+
+  
+  Uses the Ruby client library.
+  result = client.get_event('primary', 'eventId')print result.summary
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

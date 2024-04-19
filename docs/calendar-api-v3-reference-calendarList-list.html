@@ -1,0 +1,383 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      CalendarList: list
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Returns the calendars on the user's calendar list.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+GET https://www.googleapis.com/calendar/v3/users/me/calendarList
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Optional query parameters
+    
+      
+        maxResults
+        integer
+        
+          Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+
+
+        
+      
+      
+        minAccessRole
+        string
+        
+          The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+
+          Acceptable values are:
+          
+            "freeBusyReader": The user can read free/busy information.
+            
+            "owner": The user can read and modify events and access control lists.
+            
+            "reader": The user can read events that are not private.
+            
+            "writer": The user can read and modify events.
+            
+          
+
+        
+      
+      
+        pageToken
+        string
+        
+          Token specifying which result page to return. Optional.
+
+
+        
+      
+      
+        showDeleted
+        boolean
+        
+          Whether to include deleted calendar list entries in the result. Optional. The default is False.
+
+
+        
+      
+      
+        showHidden
+        boolean
+        
+          Whether to show hidden entries. Optional. The default is False.
+
+
+        
+      
+      
+        syncToken
+        string
+        
+          Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar.readonly
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns a response body with the following structure:
+  
+    {  "kind": "calendar#calendarList",  "etag": etag,  "nextPageToken": string,  "nextSyncToken": string,  "items": [    calendarList Resource  ]}
+    
+      
+        
+          Property name
+          Value
+          Description
+          Notes
+        
+      
+      
+      
+        kind
+        string
+        Type of the collection ("calendar#calendarList").
+        
+        
+      
+      
+        etag
+        etag
+        ETag of the collection.
+        
+        
+      
+      
+        nextPageToken
+        string
+        Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+        
+        
+      
+      
+        items[]
+        list
+        Calendars that are present on the user's calendar list.
+        
+        
+      
+      
+        nextSyncToken
+        string
+        Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
+        
+        
+      
+      
+    
+  
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.CalendarList;import com.google.api.services.calendar.model.CalendarListEntry;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Iterate through entries in calendar listString pageToken = null;do {  CalendarList calendarList = service.calendarList().list().setPageToken(pageToken).execute();  List<CalendarListEntry> items = calendarList.getItems();  for (CalendarListEntry calendarListEntry : items) {    System.out.println(calendarListEntry.getSummary());  }  pageToken = calendarList.getNextPageToken();} while (pageToken != null);
+
+
+  
+  Uses the Python client library.
+  page_token = Nonewhile True:  calendar_list = service.calendarList().list(pageToken=page_token).execute()  for calendar_list_entry in calendar_list['items']:    print calendar_list_entry['summary']  page_token = calendar_list.get('nextPageToken')  if not page_token:    break
+
+
+  
+  Uses the PHP client library.
+  $calendarList = $service->calendarList->listCalendarList();while(true) {  foreach ($calendarList->getItems() as $calendarListEntry) {    echo $calendarListEntry->getSummary();  }  $pageToken = $calendarList->getNextPageToken();  if ($pageToken) {    $optParams = array('pageToken' => $pageToken);    $calendarList = $service->calendarList->listCalendarList($optParams);  } else {    break;  }}
+
+
+  
+  Uses the Ruby client library.
+  page_token = nilbegin  result = client.list_calendar_lists(page_token: page_token)  result.items.each do |e|    print e.summary + "\n"  end  if result.next_page_token != page_token    page_token = result.next_page_token  else    page_token = nil  endend while !page_token.nil?
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

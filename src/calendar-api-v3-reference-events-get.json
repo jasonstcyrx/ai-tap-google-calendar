@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Calendar API - Get Event",
+  "description": "Returns an event from a specified calendar based on the event ID.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for getting an event",
+      "value": "/calendar/v3/calendars/{calendarId}/events/{eventId}"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "alwaysIncludeEmail": {
+          "type": "boolean",
+          "description": "Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available."
+        },
+        "maxAttendees": {
+          "type": "integer",
+          "description": "The maximum number of attendees to include in the response."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Time zone used in the response."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "object",
+          "description": "The event resource object."
+        }
+      },
+      "required": ["event"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"]
+}

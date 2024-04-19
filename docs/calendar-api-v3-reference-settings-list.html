@@ -1,0 +1,346 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Settings: list
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Returns all user settings for the authenticated user.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+GET https://www.googleapis.com/calendar/v3/users/me/settings
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Optional query parameters
+    
+      
+        maxResults
+        integer
+        
+          Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+
+
+        
+      
+      
+        pageToken
+        string
+        
+          Token specifying which result page to return. Optional.
+
+
+        
+      
+      
+        syncToken
+        string
+        
+          Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar.readonly
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.settings.readonly
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns a response body with the following structure:
+  
+    {  "kind": "calendar#settings",  "etag": etag,  "nextPageToken": string,  "nextSyncToken": string,  "items": [    settings Resource  ]}
+    
+      
+        
+          Property name
+          Value
+          Description
+          Notes
+        
+      
+      
+      
+        kind
+        string
+        Type of the collection ("calendar#settings").
+        
+        
+      
+      
+        etag
+        etag
+        Etag of the collection.
+        
+        
+      
+      
+        items[]
+        list
+        List of user settings.
+        
+        
+      
+      
+        nextPageToken
+        string
+        Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
+        
+        
+      
+      
+        nextSyncToken
+        string
+        Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
+        
+        
+      
+      
+    
+  
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.Setting;import com.google.api.services.calendar.model.Settings;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Iterate over all user settingsSettings settings = service.settings().list().execute();for (Setting setting : settings.getItems()) {  System.out.println(setting.getId() + ": " + setting.getValue());}
+
+
+  
+  Uses the Python client library.
+  settings = service.settings().list().execute()for setting in settings['items']:  print '%s: %s' % (setting['id'], setting['value'])
+
+
+  
+  Uses the PHP client library.
+  $settings = $service->settings->listSettings();foreach ($settings->getItems() as $setting) {  echo $setting->getId() . ': ' . $setting->getValue();}
+
+
+  
+  Uses the Ruby client library.
+  result = client.list_settingsresult.items.each do |e|  print e.id + ": " + e.value + "\n"end
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

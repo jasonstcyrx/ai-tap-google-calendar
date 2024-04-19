@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Calendar API - Calendars",
+  "description": "A collection of all existing calendars. Provides methods to manage calendars.",
+  "type": "object",
+  "properties": {
+    "calendar": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the resource ('calendar#calendar')."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource."
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the calendar." 
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the calendar."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the calendar."
+        },
+        "location": {
+          "type": "string",
+          "description": "Geographic location of the calendar as free-form text."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the calendar (formatted as an IANA Time Zone Database name)."
+        },
+        "conferenceProperties": {
+          "type": "object",
+          "properties": {
+            "allowedConferenceSolutionTypes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The types of conference solutions that are supported for this calendar."
+            }
+          }
+        }
+      },
+      "required": ["id", "kind"]
+    }
+  },
+  "required": ["calendar"]
+}

@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Events: update",
+  "description": "Updates an event. This method does not support patch semantics and always updates the entire event resource. To do a partial update, perform a get followed by an update using etags to ensure atomicity.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for updating an event",
+      "value": "https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["PUT"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "pathParameters": {
+      "type": "object",
+      "properties": {
+        "calendarId": {
+          "type": "string",
+          "description": "Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
+        },
+        "eventId": {
+          "type": "string",
+          "description": "Event identifier."
+        }
+      },
+      "required": ["calendarId", "eventId"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "alwaysIncludeEmail": {
+          "type": "boolean",
+          "description": "Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided)."
+        },
+        "conferenceDataVersion": {
+          "type": "integer",
+          "description": "Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0."
+        },
+        "maxAttendees": {
+          "type": "integer",
+          "description": "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional."
+        },
+        "sendNotifications": {
+          "type": "boolean",
+          "description": "Deprecated. Please use sendUpdates instead.Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false."
+        },
+        "sendUpdates": {
+          "type": "string",
+          "description": "Guests who should receive notifications about the event update (for example, title changes, etc.).",
+          "enum": ["all", "externalOnly", "none"]
+        },
+        "supportsAttachments": {
+          "type": "boolean",
+          "description": "Whether API client performing operation supports event attachments. Optional. The default is False."
+        }
+      }
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["application/json"],
+      "description": "Content type of the request body"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "end": {
+          "type": "object",
+          "description": "The (exclusive) end time of the event. For a recurring event, this is the end time of the first instance.",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date",
+              "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event."
+            },
+            "dateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time, as a combined date-time value (formatted according to RFC3339). A time zone offset is required unless a time zone is explicitly specified in timeZone."
+            },
+            "timeZone": {
+              "type": "string",
+              "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\")."
+            }
+          },
+          "required": ["dateTime", "timeZone"]
+        },
+        "start": {
+          "type": "object",
+          "description": "The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date",
+              "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event."
+            },
+            "dateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time, as a combined date-time value (formatted according to RFC3339). A time zone offset is required unless a time zone is explicitly specified in timeZone."
+            },
+            "timeZone": {
+              "type": "string",
+              "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\")." 
+            }
+          },
+          "required": ["dateTime", "timeZone"]
+        }
+      },
+      "required": ["end", "start"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of resource (\"calendar#event\")."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource."
+        },
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier of the event."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the event."
+        },
+        "htmlLink": {
+          "type": "string",
+          "description": "URL link to the event."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation time of the event."
+        },
+        "updated": {
+          "type": "string", 
+          "format": "date-time",
+          "description": "Last modification time of the event."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the event."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the event."
+        },
+        "location": {
+          "type": "string", 
+          "description": "Geographic location of the event."
+        },
+        "colorId": {
+          "type": "string",
+          "description": "Color ID of the event."
+        },
+        "creator": {
+          "type": "object",
+          "description": "The creator of the event."
+        },
+        "organizer": {
+          "type": "object", 
+          "description": "The organizer of the event."
+        },
+        "start": {
+          "type": "object",
+          "description": "Start of the event."
+        },
+        "end": {
+          "type": "object",
+          "description": "End of the event." 
+        },
+        "endTimeUnspecified": {
+          "type": "boolean",
+          "description": "Whether the end time is unspecified."
+        },
+        "recurrence": {
+          "type": "array",
+          "description": "List of RRULE, EXRULE, RDATE and EXDATE lines."
+        },
+        "recurringEventId": {
+          "type": "string",
+          "description": "For an instance of a recurring event, this is the id of the recurring event to which this instance belongs."
+        },
+        "originalStartTime": {
+          "type": "object",
+          "description": "For an instance of a recurring event, this is the time at which this event would start according to the recurrence data in the recurring event identified by recurringEventId."
+        },
+        "transparency": {
+          "type": "string",
+          "description": "Whether the event blocks time for this calendar."
+        },
+        "visibility": {
+          "type": "string",
+          "description": "Visibility of the event."
+        },
+        "iCalUID": {
+          "type": "string",
+          "description": "Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method."  
+        },
+        "sequence": {
+          "type": "integer",
+          "description": "Sequence number as per iCalendar."
+        },
+        "attendees": {
+          "type": "array",
+          "description": "The attendees of the event."
+        },
+        "attendeesOmitted": {
+          "type": "boolean",
+          "description": "Whether attendees may have been omitted from this representation."
+        },
+        "extendedProperties": {
+          "type": "object",
+          "description": "Extended properties of the event."
+        },
+        "hangoutLink": {
+          "type": "string",
+          "description": "An absolute link to the Google+ hangout associated with this event."
+        },
+        "conferenceData": {
+          "type": "object",
+          "description": "The conference-related information."
+        },
+        "gadget": {
+          "type": "object",
+          "description": "A gadget that extending this event."
+        },
+        "anyoneCanAddSelf": {
+          "type" : "boolean",
+          "description": "Whether anyone can invite themselves to the event."
+        },
+        "guestsCanInviteOthers": {
+          "type": "boolean",
+          "description": "Whether attendees other than the organizer can invite others."  
+        },
+        "guestsCanModify": {
+          "type": "boolean", 
+          "description": "Whether attendees other than the organizer can modify the event."
+        },
+        "guestsCanSeeOtherGuests": {
+          "type": "boolean",
+          "description": "Whether attendees other than the organizer can see who the event's attendees are."
+        },
+        "privateCopy": {
+          "type": "boolean",
+          "description": "If set to True, Event Audit Viewer will regard this event as private/confidential."
+        },
+        "locked": {
+          "type": "boolean",
+          "description": "Whether this is a locked event copy where no changes can be made."
+        },
+        "reminders": {
+          "type": "object",
+          "description": "Information about event reminders."
+        },
+        "source": {
+          "type": "object",
+          "description": "Source from which the event was created."
+        },
+        "attachments": {  
+          "type": "array", 
+          "description": "File attachments for the event."
+        }
+      },
+      "required": [
+        "kind",
+        "etag",
+        "id",
+        "status",
+        "htmlLink",
+        "created",
+        "updated"
+      ] 
+    }
+  },
+  "required": ["endpoint", "method", "headers", "pathParameters", "response"]
+}

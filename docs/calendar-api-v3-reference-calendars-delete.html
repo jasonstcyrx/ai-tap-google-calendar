@@ -1,0 +1,277 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Calendars: delete
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with the following scope:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns an empty response body.
+
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Delete a calendarservice.calendars().delete("secondaryCalendarId").execute();
+
+
+  
+  Uses the Python client library.
+  service.calendars().delete(calendarId='secondaryCalendarId').execute()
+
+
+  
+  Uses the PHP client library.
+  $service->calendars->delete('secondaryCalendarId');
+
+
+  
+  Uses the Ruby client library.
+  client.delete_calendar('secondaryCalendarId')
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

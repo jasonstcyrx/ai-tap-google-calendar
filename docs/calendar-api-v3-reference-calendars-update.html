@@ -1,0 +1,328 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Calendars: update
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Updates metadata for a calendar.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+PUT https://www.googleapis.com/calendar/v3/calendars/calendarId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with the following scope:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+
+
+
+  In the request body, supply a Calendars resource with the following properties:
+  
+      
+        
+          Property name
+          Value
+          Description
+          Notes
+        
+      
+    
+
+    
+      Optional Properties
+    
+      
+        description
+        string
+        Description of the calendar. Optional.
+        
+          writable
+        
+      
+      
+        location
+        string
+        Geographic location of the calendar as free-form text. Optional.
+        
+          writable
+        
+      
+      
+        summary
+        string
+        Title of the calendar.
+        
+          writable
+        
+      
+      
+        timeZone
+        string
+        The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) Optional.
+        
+          writable
+        
+      
+    
+  
+
+
+
+
+
+  Response
+
+  If successful, this method returns a Calendars resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Retrieve a calendarcom.google.api.services.calendar.model.Calendar calendar =    service.calendars().get('primary').execute();// Make a changecalendar.setSummary("calendarSummary");// Update the altered calendarcom.google.api.services.calendar.model.Calendar updatedCalendar =    service.calendars().update(calendar.getId(), calendar).execute();System.out.println(updatedCalendar.getEtag());
+
+
+  
+  Uses the Python client library.
+  # First retrieve the calendar from the API.calendar = service.calendars().get(calendarId='primary').execute()calendar['summary'] = 'New Summary'updated_calendar = service.calendars().update(calendarId=calendar['id'], body=calendar).execute()print updated_calendar['etag']
+
+
+  
+  Uses the PHP client library.
+  // First retrieve the calendar from the API.$calendar = $service->calendars->get('primary');$calendar->setSummary('New Summary');$updatedCalendar = $service->calendars->update('primary', $calendar);echo $updatedCalendar->getEtag();
+
+
+  
+  Uses the Ruby client library.
+  calendar = client.get_calendar('primary')calendar.summary = "New Summary"result = client.update_calendar(calendar.id, calendar)print result.etag
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

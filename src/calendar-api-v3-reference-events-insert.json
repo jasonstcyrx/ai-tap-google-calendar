@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Calendar Events: insert",
+  "description": "Creates an event on the specified calendar.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for creating an event",
+      "const": "https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["POST"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "pathParameters": {
+      "type": "object",
+      "properties": {
+        "calendarId": {
+          "type": "string",
+          "description": "Calendar identifier to retrieve calendar IDs"
+        }
+      },
+      "required": ["calendarId"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "conferenceDataVersion": {
+          "type": "integer",
+          "description": "Version number of conference data supported by the API client",
+          "minimum": 0,
+          "maximum": 1  
+        },
+        "maxAttendees": {
+          "type": "integer",
+          "description": "The maximum number of attendees to include in the response"
+        },
+        "sendNotifications": {
+          "type": "boolean",
+          "description": "Deprecated, use sendUpdates instead. Whether to send notifications about event creation"
+        },
+        "sendUpdates": {
+          "type": "string",
+          "enum": ["all", "externalOnly", "none"],
+          "description": "Whether to send notifications about event creation"
+        },
+        "supportsAttachments": {
+          "type": "boolean",
+          "description": "Whether API client supports event attachments"
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "end": {
+          "type": "object",
+          "description": "The end time of the event",
+          "required": ["dateTime", "timeZone"]
+        },
+        "start": {
+          "type": "object", 
+          "description": "The start time of the event",
+          "required": ["dateTime", "timeZone"]
+        }
+      },
+      "required": ["end", "start"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Identifier of the event resource type",
+          "const": "calendar#event"
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource"
+        },
+        "id": {
+          "type": "string", 
+          "description": "Opaque identifier of the event"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the event",
+          "enum": ["confirmed", "tentative", "cancelled"]
+        },
+        "htmlLink": {
+          "type": "string",
+          "description": "URL for the event in the Google Calendar Web UI"
+        },
+        "created": {
+          "type": "string",
+          "description": "Creation time of the event (as a RFC3339 timestamp)"
+        },
+        "updated": {
+          "type": "string", 
+          "description": "Last modification time of the event (as a RFC3339 timestamp)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the event"
+        },
+        "creator": {
+          "type": "object",
+          "description": "The creator of the event"
+        },
+        "organizer": {
+          "type": "object", 
+          "description": "The organizer of the event"
+        },
+        "start": {
+          "type": "object",
+          "description": "The start time of the event"
+        },
+        "end": {
+          "type": "object",
+          "description": "The end time of the event" 
+        },
+        "endTimeUnspecified": {
+          "type": "boolean",
+          "description": "Whether the end time is unspecified"
+        },
+        "recurrence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Recurrence rules for repeating events"
+        },
+        "recurringEventId": {
+          "type": "string",
+          "description": "For an instance of a recurring event, this is the id of the recurring event to which this instance belongs"
+        },
+        "originalStartTime": {
+          "type": "object", 
+          "description": "For an instance of a recurring event, this is the start time of the recurring event"
+        },
+        "transparency": {
+          "type": "string",
+          "enum": ["opaque", "transparent"],
+          "description": "Whether the event blocks time on the calendar"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["default", "public", "private", "confidential"],
+          "description": "Visibility of the event"
+        },
+        "iCalUID": {
+          "type": "string",
+          "description": "Event uid as defined in RFC5545. It is only available after the event's iCalUID has been set"
+        },
+        "sequence": {
+          "type": "integer",
+          "description": "Sequence number as per iCalendar"
+        },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "The attendees of the event"  
+        },
+        "attendeesOmitted": {
+          "type": "boolean", 
+          "description": "Whether attendees may have been omitted from the event's representation"
+        },
+        "extendedProperties": {
+          "type": "object",
+          "description": "Extended properties of the event"
+        },
+        "hangoutLink": {
+          "type": "string",
+          "description": "An absolute link to the Google+ Hangout associated with this event"
+        },
+        "conferenceData": {
+          "type": "object",
+          "description": "The conference-related data"
+        },
+        "gadget": {
+          "type": "object",
+          "description": "The gadget attached to this event"  
+        },
+        "anyoneCanAddSelf": {
+          "type": "boolean",
+          "description": "Whether anyone can invite themselves to the event"
+        },
+        "guestsCanInviteOthers": {
+          "type": "boolean",
+          "description": "Whether attendees other than the organizer can invite others"
+        },
+        "guestsCanModify": {
+          "type": "boolean",
+          "description": "Whether attendees other than the organizer can modify the event"  
+        },
+        "guestsCanSeeOtherGuests": {
+          "type": "boolean",
+          "description": "Whether attendees other than the organizer can see attendee list"
+        },
+        "privateCopy": {
+          "type": "boolean",
+          "description": "Whether the event is a private copy where no attendee data should be shared"
+        },
+        "locked": {
+          "type": "boolean",
+          "description": "Whether the event is locked for modifying attendee list"
+        },
+        "reminders": {
+          "type": "object",
+          "description": "Information about event reminders"
+        },
+        "source": {
+          "type": "object", 
+          "description": "Source from which the event was created"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "File attachments for the event"
+        }
+      },
+      "required": [
+        "kind",
+        "etag", 
+        "id",
+        "status",
+        "htmlLink",
+        "created",
+        "updated",
+        "summary"
+      ]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "pathParameters", "queryParameters", "body", "response"]
+}

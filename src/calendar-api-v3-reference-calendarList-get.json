@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CalendarList: get",
+  "description": "Returns a calendar from the user's calendar list.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for getting a calendar from user's calendar list",
+      "value": "/calendar/v3/users/me/calendarList/{calendarId}"
+    },
+    "method": {
+      "type": "string", 
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "calendarId": {
+          "type": "string",
+          "description": "Calendar identifier to retrieve calendar. Use 'primary' keyword to access primary calendar."
+        }
+      },
+      "required": ["calendarId"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "CalendarListEntry": {
+          "type": "object",
+          "description": "The requested calendar list entry"
+        }
+      },
+      "required": ["CalendarListEntry"]  
+    }
+  },
+  "required": ["endpoint", "method", "headers", "queryParameters", "response"]
+}

@@ -1,0 +1,277 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      CalendarList: get
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Returns a calendar from the user's calendar list.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+GET https://www.googleapis.com/calendar/v3/users/me/calendarList/calendarId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar.readonly
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns a CalendarList resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.CalendarListEntry;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Retrieve a specific calendar list entryCalendarListEntry calendarListEntry = service.calendarList().get("calendarId").execute();System.out.println(calendarListEntry.getSummary());
+
+
+  
+  Uses the Python client library.
+  calendar_list_entry = service.calendarList().get(calendarId='calendarId').execute()print(calendar_list_entry['summary'])
+
+
+  
+  Uses the PHP client library.
+  $calendarListEntry = $service->calendarList->get('calendarId');echo $calendarListEntry->getSummary();
+
+
+  
+  Uses the Ruby client library.
+  result = client.get_calendar_list('calendarId')print result.summary
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

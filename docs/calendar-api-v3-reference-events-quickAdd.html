@@ -1,0 +1,319 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Events: quickAdd
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Creates an event based on a simple text string.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+POST https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+      Required query parameters
+    
+      
+        text
+        string
+        
+          The text describing the event to be created.
+
+
+        
+      
+    
+      Optional query parameters
+    
+      
+        sendNotifications
+        boolean
+        
+          Deprecated. Please use sendUpdates instead.Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+
+
+        
+      
+      
+        sendUpdates
+        string
+        
+          Guests who should receive notifications about the creation of the new event.
+
+          Acceptable values are:
+          
+            "all": Notifications are sent to all guests.
+            
+            "externalOnly": Notifications are sent to non-Google Calendar guests only.
+            
+            "none": No notifications are sent. For calendar migration tasks, consider using the Events.import method instead.
+            
+          
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.events
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns an Events resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.Event;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Quick-add an eventString eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";Event createdEvent =    service.events().quickAdd('primary').setText(eventText).execute();System.out.println(createdEvent.getId());
+
+
+  
+  Uses the Python client library.
+  created_event = service.events().quickAdd(    calendarId='primary',    text='Appointment at Somewhere on June 3rd 10am-10:25am').execute()print created_event['id']
+
+
+  
+  Uses the PHP client library.
+  $createdEvent = $service->events->quickAdd(    'primary',    'Appointment at Somewhere on June 3rd 10am-10:25am');echo $createdEvent->getId();
+
+
+  
+  Uses the Ruby client library.
+  result = client.quick_add_event(  'primary',  'Appointment at Somewhere on June 3rd 10am-10:25am')print result.id
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

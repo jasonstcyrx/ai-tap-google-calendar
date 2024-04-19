@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CalendarList: update",
+  "description": "Updates an existing calendar on the user's calendar list.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for updating a calendar list",
+      "value": "/calendar/v3/users/me/calendarList/{calendarId}"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["PUT"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["application/json"],
+      "description": "Content type of the request body"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": {
+          "type": "string",
+          "description": "The main color of the calendar in hexadecimal format"
+        },
+        "colorId": {
+          "type": "string",
+          "description": "The color ID of the calendar"
+        },
+        "defaultReminders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "description": "The method used by the reminder (email or popup)"
+              },
+              "minutes": {
+                "type": "integer",
+                "description": "Number of minutes before the event for the reminder"
+              }
+            },
+            "required": ["method", "minutes"]
+          }
+        },
+        "foregroundColor": {
+          "type": "string",
+          "description": "The foreground color of the calendar in hexadecimal format"  
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Whether the calendar is hidden from the list"
+        },
+        "notificationSettings": {
+          "type": "object",
+          "properties": {
+            "notifications": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "description": "The notification delivery method (email)"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The type of notification"
+                  }
+                },
+                "required": ["method", "type"]
+              }
+            }
+          }
+        },
+        "selected": {
+          "type": "boolean", 
+          "description": "Whether the calendar shows up in the UI"
+        },
+        "summaryOverride": {
+          "type": "string",
+          "description": "The summary the user set for this calendar"
+        }
+      }
+    },
+    "queryParameters": {
+      "type": "object", 
+      "properties": {
+        "colorRgbFormat": {
+          "type": "boolean",
+          "description": "Whether to use RGB color values"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of resource"
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource"
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the calendar"
+        }
+      },
+      "required": ["kind", "etag", "id"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Freebusy",
+  "description": "Returns free/busy information for a set of calendars.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for getting free/busy information",
+      "value": "/calendar/v3/freeBusy"
+    },
+    "method": {
+      "type": "string", 
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object", 
+      "properties": {
+        "timeMin": {
+          "type": "string",
+          "description": "The start of the interval for the query, as a RFC3339 timestamp."
+        },
+        "timeMax": {
+          "type": "string", 
+          "description": "The end of the interval for the query, as a RFC3339 timestamp."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Time zone used in the response (optional)."
+        },
+        "groupExpansionMax": {
+          "type": "integer",
+          "description": "Maximum number of calendar identifiers to be provided for a single group (optional)."
+        },
+        "calendarExpansionMax": {
+          "type": "integer",
+          "description": "Maximum number of calendars for which FreeBusy information is to be returned (optional)."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The calendar id or group id."
+              }
+            },
+            "required": ["id"]
+          },
+          "description": "List of calendars and/or group IDs to query."
+        }
+      },
+      "required": ["timeMin", "timeMax", "items"]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the resource ('calendar#freeBusy')."
+        },
+        "calendars": {
+          "type": "object",
+          "description": "List of free/busy information for calendars."
+        },
+        "groups": {
+          "type": "object",
+          "description": "Expansion of groups."
+        }
+      },
+      "required": ["kind", "calendars"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"]
+}

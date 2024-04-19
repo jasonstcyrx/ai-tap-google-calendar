@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Events: import",
+  "description": "Imports an event. This operation is used to add a private copy of an existing event to a calendar. Only events with an eventType of default may be imported.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for importing an event",
+      "value": "/calendar/v3/calendars/{calendarId}/events/import"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["POST"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["application/json"],
+      "description": "Content type of the request body"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "end": {
+          "type": "object",
+          "description": "The (exclusive) end time of the event."
+        },
+        "iCalUID": {
+          "type": "string",
+          "description": "Event unique identifier as defined in RFC5545."
+        },
+        "start": {
+          "type": "object", 
+          "description": "The (inclusive) start time of the event."
+        }
+      },
+      "required": ["end", "iCalUID", "start"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "conferenceDataVersion": {
+          "type": "integer",
+          "description": "Version number of conference data supported by the API client."
+        },
+        "supportsAttachments": {
+          "type": "boolean",
+          "description": "Whether API client supports event attachments."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier of the imported event."
+        }
+      },
+      "required": ["id"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "contentType", "response"]
+}

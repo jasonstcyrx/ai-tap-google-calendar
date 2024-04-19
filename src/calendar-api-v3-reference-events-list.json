@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Calendar API - Events: list", 
+  "description": "Returns events on the specified calendar.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for listing events on a calendar",
+      "value": "/calendar/v3/calendars/{calendarId}/events"
+    },
+    "method": {
+      "type": "string", 
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "alwaysIncludeEmail": {
+          "type": "boolean",
+          "description": "Deprecated and ignored."
+        },
+        "eventTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["default", "focusTime", "outOfOffice", "workingLocation"]
+          },
+          "description": "Event types to return."
+        },
+        "iCalUID": {
+          "type": "string",
+          "description": "Specifies an event ID in the iCalendar format."
+        },
+        "maxAttendees": {
+          "type": "integer",
+          "description": "The maximum number of attendees to include."
+        },
+        "maxResults": {
+          "type": "integer", 
+          "description": "Maximum number of events returned."
+        },
+        "orderBy": {
+          "type": "string",
+          "enum": ["startTime", "updated"],
+          "description": "The order of the events returned."
+        },
+        "pageToken": {
+          "type": "string",
+          "description": "Token for specifying which page to return."
+        },
+        "privateExtendedProperty": {
+          "type": "string",
+          "description": "Extended private properties constraint."
+        },
+        "q": {
+          "type": "string",
+          "description": "Free text search terms."
+        },
+        "sharedExtendedProperty": {
+          "type": "string",
+          "description": "Extended shared properties constraint."  
+        },
+        "showDeleted": {
+          "type": "boolean",
+          "description": "Whether to include deleted events."
+        },
+        "showHiddenInvitations": {
+          "type": "boolean",
+          "description": "Whether to include hidden invitations."
+        },
+        "singleEvents": {
+          "type": "boolean", 
+          "description": "Whether to expand recurring events."
+        },
+        "syncToken": {
+          "type": "string",
+          "description": "Token for sync requests."
+        },
+        "timeMax": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Upper bound for the event start time."
+        },
+        "timeMin": {
+          "type": "string",
+          "format": "date-time", 
+          "description": "Lower bound for the event end time."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Time zone used in the response."  
+        },
+        "updatedMin": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Lower bound for last modification time."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of collection."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the collection."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the calendar."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the calendar."  
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification time of calendar."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the calendar."
+        },
+        "accessRole": {
+          "type": "string",
+          "description": "The authenticated user's access role."
+        },
+        "defaultReminders": {
+          "type": "array", 
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "minutes": {
+                "type": "integer"  
+              }
+            }
+          },
+          "description": "Default reminders."
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "Token for next page."
+        },
+        "nextSyncToken": {
+          "type": "string", 
+          "description": "Token for sync requests."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/event"
+          },
+          "description": "List of events."
+        }
+      },
+      "required": ["kind", "etag", "items"]
+    }
+  },
+  "definitions": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier of the event."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the event."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the event."
+        },
+        "start": {
+          "$ref": "#/definitions/eventDateTime"
+        },
+        "end": {
+          "$ref": "#/definitions/eventDateTime"  
+        },
+        "htmlLink": {
+          "type": "string",
+          "description": "URL link to the event."
+        }
+      },
+      "required": ["id", "summary", "start", "end"]
+    },
+    "eventDateTime": {
+      "type": "object", 
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date/time in RFC3339 format."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone in which the time is specified."
+        }
+      }
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"],
+  "additionalProperties": false
+}

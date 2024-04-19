@@ -1,0 +1,341 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Acl: insert
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Creates an access control rule.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+POST https://www.googleapis.com/calendar/v3/calendars/calendarId/acl
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+    
+      Optional query parameters
+    
+      
+        sendNotifications
+        boolean
+        
+          Whether to send notifications about the calendar sharing change. Optional. The default is True.
+
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with the following scope:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+
+
+
+  In the request body, supply an Acl resource with the following properties:
+  
+      
+        
+          Property name
+          Value
+          Description
+          Notes
+        
+      
+    
+    
+      Required Properties
+    
+      
+        role
+        string
+        The role assigned to the scope. Possible values are:  "none" - Provides no access. "freeBusyReader" - Provides read access to free/busy information. "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs. 
+        
+          writable
+        
+      
+      
+        scope
+        object
+        The extent to which calendar access is granted by this ACL rule.
+        
+        
+      
+      
+        scope.type
+        string
+        The type of the scope. Possible values are:  "default" - The public scope. This is the default value. "user" - Limits the scope to a single user. "group" - Limits the scope to a group. "domain" - Limits the scope to a domain.  Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.
+        
+        
+      
+
+    
+      Optional Properties
+    
+      
+        scope.value
+        string
+        The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type "default".
+        
+          writable
+        
+      
+    
+  
+
+
+
+
+
+  Response
+
+  If successful, this method returns an Acl resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.AclRule;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Create access rule with associated scopeAclRule rule = new AclRule();Scope scope = new Scope();scope.setType("scopeType").setValue("scopeValue");rule.setScope(scope).setRole("role");// Insert new access ruleAclRule createdRule = service.acl().insert('primary', rule).execute();System.out.println(createdRule.getId());
+
+
+  
+  Uses the Python client library.
+  rule = {    'scope': {        'type': 'scopeType',        'value': 'scopeEmail',    },    'role': 'role'}created_rule = service.acl().insert(calendarId='primary', body=rule).execute()print created_rule['id']
+
+
+  
+  Uses the PHP client library.
+  $rule = new Google_Service_Calendar_AclRule();$scope = new Google_Service_Calendar_AclRuleScope();$scope->setType("scopeType");$scope->setValue("scopeValue");$rule->setScope($scope);$rule->setRole("role");$createdRule = $service->acl->insert('primary', $rule);echo $createdRule->getId();
+
+
+  
+  Uses the Ruby client library.
+  rule = Google::Apis::CalendarV3::AclRule.new(  scope: {    type: 'scopeType',    value: 'scopeEmail',  },  role: 'role')result = client.insert_acl('primary', rule)print result.id
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

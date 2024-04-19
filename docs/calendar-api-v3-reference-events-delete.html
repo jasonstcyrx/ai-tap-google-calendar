@@ -1,0 +1,317 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Events: delete
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Deletes an event.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+
+
+        
+      
+      
+        eventId
+        string
+        
+          Event identifier.
+
+
+        
+      
+    
+      Optional query parameters
+    
+      
+        sendNotifications
+        boolean
+        
+          Deprecated. Please use sendUpdates instead.Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+
+
+        
+      
+      
+        sendUpdates
+        string
+        
+          Guests who should receive notifications about the deletion of the event.
+
+          Acceptable values are:
+          
+            "all": Notifications are sent to all guests.
+            
+            "externalOnly": Notifications are sent to non-Google Calendar guests only.
+            
+            "none": No notifications are sent. For calendar migration tasks, consider using the Events.import method instead.
+            
+          
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.events
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns an empty response body.
+
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Delete an eventservice.events().delete('primary', "eventId").execute();
+
+
+  
+  Uses the Python client library.
+  service.events().delete(calendarId='primary', eventId='eventId').execute()
+
+
+  
+  Uses the PHP client library.
+  $service->events->delete('primary', 'eventId');
+
+
+  
+  Uses the Ruby client library.
+  client.delete_event('primary', 'eventId')
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

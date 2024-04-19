@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CalendarList: list",
+  "description": "Returns the calendars on the user's calendar list.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for listing calendars",
+      "value": "/calendar/v3/users/me/calendarList"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "maxResults": {
+          "type": "integer",
+          "description": "Maximum number of entries returned on one result page."
+        },
+        "minAccessRole": {
+          "type": "string",
+          "description": "The minimum access role for the user in the returned entries."
+        },
+        "pageToken": {
+          "type": "string",
+          "description": "Token specifying which result page to return."
+        },
+        "showDeleted": {
+          "type": "boolean",
+          "description": "Whether to include deleted calendar list entries in the result."
+        },
+        "showHidden": {
+          "type": "boolean",
+          "description": "Whether to show hidden entries."
+        },
+        "syncToken": {
+          "type": "string",
+          "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the collection (\"calendar#calendarList\")."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the collection."
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "Token used to access the next page of this result."
+        },
+        "nextSyncToken": {
+          "type": "string",
+          "description": "Token used at a later point in time to retrieve only the entries that have changed since this result was returned."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/calendarList"
+          },
+          "description": "Calendars that are present on the user's calendar list."
+        }
+      },
+      "required": ["kind", "etag", "items"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"],
+  "additionalProperties": false,
+  "definitions": {
+    "calendarList": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the resource (\"calendar#calendarListEntry\")."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource."
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the calendar list entry."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the calendar."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the calendar."
+        },
+        "location": {
+          "type": "string",
+          "description": "Geographic location for the calendar."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the calendar."
+        }
+      },
+      "required": ["kind", "id", "summary"]
+    }
+  }
+}

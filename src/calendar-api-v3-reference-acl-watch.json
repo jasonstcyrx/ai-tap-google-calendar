@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Calendar API - Watch ACL Resources",
+  "description": "This API endpoint allows you to watch for changes to ACL (access control list) resources in a specified calendar.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for watching ACL resources",
+      "const": "https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch"
+    },
+    "method": {
+      "type": "string",
+      "const": "POST",
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["application/json"],
+      "description": "Content type of the request body"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A UUID or similar unique string that identifies this channel."
+        },
+        "token": {
+          "type": "string",
+          "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["web_hook", "webhook"],
+          "description": "The type of delivery mechanism used for this channel."
+        },
+        "address": {
+          "type": "string",
+          "description": "The address where notifications are delivered for this channel."
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "ttl": {
+              "type": "string",
+              "description": "The time-to-live in seconds for the notification channel. Default is 604800 seconds."
+            }
+          }
+        }
+      },
+      "required": ["id", "type", "address"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "calendarId": {
+          "type": "string",
+          "description": "Calendar identifier to watch ACL resources for."
+        }
+      },
+      "required": ["calendarId"]  
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "api#channel",
+          "description": "Identifies this as a notification channel used to watch for changes."
+        },
+        "id": {
+          "type": "string",
+          "description": "A UUID or similar unique string that identifies this channel."
+        },
+        "resourceId": {
+          "type": "string",
+          "description": "An opaque ID that identifies the resource being watched on this channel."
+        },
+        "resourceUri": {
+          "type": "string",
+          "description": "A version-specific identifier for the watched resource."
+        },
+        "token": {
+          "type": "string",
+          "description": "An arbitrary string delivered to the target address with each notification."
+        },
+        "expiration": {
+          "type": "integer",
+          "description": "Date and time of notification channel expiration, expressed as a Unix timestamp in milliseconds."
+        }
+      },
+      "required": ["kind", "id", "resourceId", "resourceUri"]
+    }
+  },
+  "required": ["endpoint", "method", "headers", "response"]
+}

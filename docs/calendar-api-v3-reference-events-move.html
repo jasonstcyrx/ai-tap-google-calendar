@@ -1,0 +1,328 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Events: move
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestParametersAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime and workingLocation events cannot be moved.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+POST https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId/move
+
+  Parameters
+  
+    
+      
+        Parameter name
+        Value
+        Description
+      
+    
+    
+    
+      Path parameters
+    
+      
+        calendarId
+        string
+        
+          Calendar identifier of the source calendar where the event currently is on.
+
+
+        
+      
+      
+        eventId
+        string
+        
+          Event identifier.
+
+
+        
+      
+    
+      Required query parameters
+    
+      
+        destination
+        string
+        
+          Calendar identifier of the target calendar where the event is to be moved to.
+
+
+        
+      
+    
+      Optional query parameters
+    
+      
+        sendNotifications
+        boolean
+        
+          Deprecated. Please use sendUpdates instead.Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+
+
+        
+      
+      
+        sendUpdates
+        string
+        
+          Guests who should receive notifications about the change of the event's organizer.
+
+          Acceptable values are:
+          
+            "all": Notifications are sent to all guests.
+            
+            "externalOnly": Notifications are sent to non-Google Calendar guests only.
+            
+            "none": No notifications are sent. For calendar migration tasks, consider using the Events.import method instead.
+            
+          
+
+        
+      
+    
+  
+
+  Authorization
+  This request requires authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.events
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns an Events resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.Event;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Move an event to another calendarEvent updatedEvent =    service.events().move('primary', "eventId", "destinationCalendarId").execute();System.out.println(updatedEvent.getUpdated());
+
+
+  
+  Uses the Python client library.
+  # First retrieve the event from the API.updated_event = service.events().move(    calendarId='primary', eventId='eventId',    destination='destinationCalendarId').execute()# Print the updated date.print updated_event['updated']
+
+
+  
+  Uses the PHP client library.
+  $result = $service->events->move('primary', 'eventId', 'destinationCalendarId');// Print the updated date.echo $result->getUpdated();
+
+
+  
+  Uses the Ruby client library.
+  result = client.move_event('primary', 'eventId', 'destinationCalendarId')print result.updated
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

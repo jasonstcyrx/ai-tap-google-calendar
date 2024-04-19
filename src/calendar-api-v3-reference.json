@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Calendar API Reference",
+  "description": "This is the API reference for the Google Calendar API. It provides details on the various resource types, methods, HTTP requests, and responses available for interacting with calendars and events.",
+  "type": "object",
+  "properties": {
+    "resourceTypes": {
+      "type": "object",
+      "description": "The resource types available in the API",
+      "properties": {
+        "acl": {
+          "description": "Details for the Acl resource type"
+        },
+        "calendarList": {
+          "description": "Details for the CalendarList resource type"  
+        },
+        "calendars": {
+          "description": "Details for the Calendars resource type"
+        },
+        "channels": {
+          "description": "Details for the Channels resource type"
+        },
+        "colors": {
+          "description": "Details for the Colors resource type"
+        },
+        "events": {
+          "description": "Details for the Events resource type"
+        },
+        "freebusy": {
+          "description": "Details for the Freebusy resource type"
+        },
+        "settings": {
+          "description": "Details for the Settings resource type"
+        }
+      }
+    }
+  }
+}

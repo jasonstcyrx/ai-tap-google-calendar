@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Events",
+  "description": "The Calendar API provides different flavors of event resources.",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "Type of the resource (\"calendar#event\")."
+    },
+    "etag": {
+      "type": "string",
+      "description": "ETag of the resource."
+    },
+    "id": {
+      "type": "string",
+      "description": "Opaque identifier of the event."
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the event."
+    },
+    "htmlLink": {
+      "type": "string",
+      "description": "An absolute link to this event in the Google Calendar Web UI."
+    },
+    "created": {
+      "type": "string",
+      "description": "Creation time of the event (as a RFC3339 timestamp)."
+    },
+    "updated": {
+      "type": "string",
+      "description": "Last modification time of the event (as a RFC3339 timestamp)."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Title of the event."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the event. Can contain HTML."
+    },
+    "location": {
+      "type": "string",
+      "description": "Geographic location of the event as free-form text."
+    },
+    "colorId": {
+      "type": "string",
+      "description": "The color of the event."
+    },
+    "creator": {
+      "type": "object",
+      "description": "The creator of the event."
+    },
+    "organizer": {
+      "type": "object",
+      "description": "The organizer of the event."
+    },
+    "start": {
+      "type": "object",
+      "description": "The (inclusive) start time of the event."
+    },
+    "end": {
+      "type": "object",
+      "description": "The (exclusive) end time of the event."
+    },
+    "endTimeUnspecified": {
+      "type": "boolean",
+      "description": "Whether the end time is actually unspecified."
+    },
+    "recurrence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event."
+    },
+    "recurringEventId": {
+      "type": "string", 
+      "description": "For an instance of a recurring event, this is the id of the recurring event to which this instance belongs."
+    },
+    "originalStartTime": {
+      "type": "object",
+      "description": "For an instance of a recurring event, this is the time at which this event would start according to the recurrence data."
+    },
+    "transparency": {
+      "type": "string",
+      "description": "Whether the event blocks time on the calendar."
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Visibility of the event."
+    },
+    "iCalUID": {
+      "type": "string",
+      "description": "Event unique identifier as defined in RFC5545."
+    },
+    "sequence": {
+      "type": "integer",
+      "description": "Sequence number as per iCalendar."
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "The attendees of the event."
+    },
+    "attendeesOmitted": {
+      "type": "boolean",
+      "description": "Whether attendees may have been omitted from the event's representation."
+    },
+    "extendedProperties": {
+      "type": "object",
+      "description": "Extended properties of the event."
+    },
+    "hangoutLink": {
+      "type": "string",
+      "description": "An absolute link to the Google Hangout associated with this event."
+    },
+    "conferenceData": {
+      "type": "object",
+      "description": "The conference-related information."
+    },
+    "gadget": {
+      "type": "object", 
+      "description": "A gadget that extends this event."
+    },
+    "anyoneCanAddSelf": {
+      "type": "boolean",
+      "description": "Whether anyone can invite themselves to the event."
+    },
+    "guestsCanInviteOthers": {
+      "type": "boolean",
+      "description": "Whether attendees other than the organizer can invite others to the event."
+    },
+    "guestsCanModify": {
+      "type": "boolean",
+      "description": "Whether attendees other than the organizer can modify the event."
+    },
+    "guestsCanSeeOtherGuests": {
+      "type": "boolean",
+      "description": "Whether attendees other than the organizer can see who the event's attendees are."
+    },
+    "privateCopy": {
+      "type": "boolean",
+      "description": "If set to True, Event propagation is disabled."
+    },
+    "locked": {
+      "type": "boolean",  
+      "description": "Whether this is a locked event copy where no changes can be made."
+    },
+    "reminders": {
+      "type": "object",
+      "description": "Information about the event's reminders for the authenticated user."
+    },
+    "source": {
+      "type": "object",
+      "description": "Source from which the event was created."
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "File attachments for the event."
+    },
+    "eventType": {
+      "type": "string",
+      "description": "Specific type of the event."
+    },
+    "workingLocationProperties": {
+      "type": "object",
+      "description": "Working location event data."
+    }, 
+    "outOfOfficeProperties": {
+      "type": "object",
+      "description": "Out of office event data."
+    },
+    "focusTimeProperties": {
+      "type": "object", 
+      "description": "Focus Time event data."
+    }
+  },
+  "required": ["kind", "etag", "id", "status", "htmlLink"]
+}

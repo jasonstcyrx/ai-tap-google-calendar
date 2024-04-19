@@ -1,0 +1,541 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Google Calendar API - Events Instances",
+  "description": "Returns instances of the specified recurring event in the specified calendar.",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint for getting instances of a recurring event",
+      "value": "/calendar/v3/calendars/{calendarId}/events/{eventId}/instances"
+    },
+    "method": {
+      "type": "string",
+      "enum": ["GET"],
+      "description": "HTTP method used for the request"
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "string",
+          "description": "Bearer token for authentication"
+        }
+      },
+      "required": ["Authorization"]
+    },
+    "queryParameters": {
+      "type": "object",
+      "properties": {
+        "alwaysIncludeEmail": {
+          "type": "boolean",
+          "description": "Deprecated and ignored."
+        },
+        "maxAttendees": {
+          "type": "integer",
+          "description": "The maximum number of attendees to include in the response."
+        },
+        "maxResults": {
+          "type": "integer",
+          "description": "Maximum number of events returned on one result page."
+        },
+        "originalStart": {
+          "type": "string",
+          "description": "The original start time of the instance in the result."
+        },
+        "pageToken": {
+          "type": "string",
+          "description": "Token specifying which result page to return."
+        },
+        "showDeleted": {
+          "type": "boolean",
+          "description": "Whether to include deleted events in the result."
+        },
+        "timeMax": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Upper bound for an event's start time to filter by."
+        },
+        "timeMin": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Lower bound for an event's end time to filter by."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Time zone used in the response."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the collection ('calendar#events')."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the collection."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the calendar."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the calendar."
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification time of the calendar."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the calendar."
+        },
+        "accessRole": {
+          "type": "string",
+          "description": "The user's access role for this calendar."
+        },
+        "defaultReminders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "description": "The method used by the reminder."
+              },
+              "minutes": {
+                "type": "integer",
+                "description": "Number of minutes before the event start when the reminder should trigger."
+              }
+            }
+          },
+          "description": "The default reminders on the calendar."
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "Token to access the next page of results."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/event"
+          },
+          "description": "List of events instances."
+        },
+        "nextSyncToken": {
+          "type": "string",
+          "description": "Token to retrieve entries that have changed since this result."
+        }
+      },
+      "required": [
+        "kind",
+        "items"
+      ]
+    }
+  },
+  "definitions": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of the resource ('calendar#event')."
+        },
+        "etag": {
+          "type": "string",
+          "description": "ETag of the resource."
+        },
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier of the event."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the event."
+        },
+        "htmlLink": {
+          "type": "string",
+          "description": "An absolute link to this event in the Google Calendar Web UI."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation time of the event."
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification time of the event."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Title of the event."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the event."
+        },
+        "location": {
+          "type": "string",
+          "description": "Geographic location of the event."
+        },
+        "colorId": {
+          "type": "string",
+          "description": "User preferred color for display."
+        },
+        "creator": {
+          "$ref": "#/definitions/creator"
+        },
+        "organizer": {
+          "$ref": "#/definitions/organizer"
+        },
+        "start": {
+          "$ref": "#/definitions/eventDateTime"
+        },
+        "end": {
+          "$ref": "#/definitions/eventDateTime"   
+        },
+        "endTimeUnspecified": {
+          "type": "boolean",
+          "description": "Whether the end time is unspecified."
+        },
+        "recurrence": {
+          "type": "array",
+          "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for recurring events."
+        },
+        "recurringEventId": {
+          "type": "string",
+          "description": "Opaque identifier of recurring event."
+        },
+        "originalStartTime": {
+          "$ref": "#/definitions/eventDateTime",
+          "description": "Original start time of recurring event."
+        },
+        "transparency": {
+          "type": "string",
+          "description": "Whether event blocks time on calendar."
+        },
+        "visibility": {
+          "type": "string", 
+          "description": "Visibility of event."
+        },
+        "iCalUID": {
+          "type": "string",
+          "description": "Event uid."
+        },
+        "sequence": {
+          "type": "integer",
+          "description": "Sequence number."
+        },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attendee"
+          },
+          "description": "List of attendees."
+        },
+        "attendeesOmitted": {
+          "type": "boolean",
+          "description": "Whether attendees may have been omitted."
+        },
+        "extendedProperties": {
+          "$ref": "#/definitions/extendedProperties",
+          "description": "Extended properties."
+        },
+        "hangoutLink": {
+          "type": "string",
+          "description": "An absolute link for the Google Hangout conference."  
+        },
+        "conferenceData": {
+          "$ref": "#/definitions/conferenceData",
+          "description": "The conference data."
+        },
+        "gadgetOwner": {
+          "type": "string",
+          "description": "The organizer's profile email or ID."
+        },
+        "anyoneCanAddSelf": {
+          "type": "boolean",
+          "description": "Whether anyone can invite themselves."
+        },
+        "guestsCanInviteOthers": {
+          "type": "boolean",   
+          "description": "Whether attendees can invite others."
+        },
+        "guestsCanSeeOtherGuests": {
+          "type": "boolean",
+          "description": "Whether attendees can see other attendees."
+        },
+        "privateCopy": {
+          "type": "boolean",
+          "description": "Whether this is a private copy."
+        },
+        "locked": {
+          "type": "boolean",
+          "description": "Whether the event is locked for modifying attendee list."
+        },
+        "source": {
+          "$ref": "#/definitions/eventSource",
+          "description": "Event source."  
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/eventAttachment" 
+          },
+          "description": "File attachments."
+        },
+        "attachmentsSyncDisabled": {
+          "type": "boolean",
+          "description": "Whether attachments are disabled for event."
+        },
+        "reminders": {
+          "type": "object",
+          "properties": {
+            "useDefault": {
+              "type": "boolean",
+              "description": "Whether the default reminders of the calendar apply."
+            },
+            "overrides": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/eventReminder"
+              },
+              "description": "The overrides of default reminders."
+            }
+          },
+          "description": "Information about event reminder values."
+        }
+      },
+      "required": [
+        "kind",
+        "status",
+        "htmlLink",
+        "organizer",
+        "start",
+        "end"
+      ]
+    },
+    "creator": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The creator's Profile ID"
+        },
+        "email": {
+          "type": "string", 
+          "description": "The creator's email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The creator's name"
+        },
+        "self": {
+          "type": "boolean",
+          "description": "Whether the creator is the authenticated user."
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "organizer": {
+      "type": "object", 
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The organizer's Profile ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "The organizer's email address"  
+        },
+        "displayName": {
+          "type": "string", 
+          "description": "The organizer's name"
+        },
+        "self": {
+          "type": "boolean",
+          "description": "Whether the organizer is the authenticated user."
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "eventDateTime": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event."
+        },
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time, as a combined date-time value."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone in which the time is specified."
+        }
+      }
+    },
+    "extendedProperties": {
+      "type": "object",
+      "properties": {
+        "private": {
+          "type": "object",
+          "description": "Properties that are private."
+        },
+        "shared": {
+          "type": "object", 
+          "description": "Properties that are shared."
+        }
+      }
+    },
+    "conferenceData": {
+      "type": "object",
+      "properties": {
+        "entryPoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/entryPoint"
+          },
+          "description": "Entry points for a conference."
+        },
+        "conferenceSolution": {
+          "$ref": "#/definitions/conferenceSolution",
+          "description": "The conference solution."    
+        },
+        "conferenceId": {
+          "type": "string",
+          "description": "The ID of the conference."
+        },
+        "signature": {
+          "type": "string",
+          "description": "A signature identifier for the conference data."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes to display before room.join info."  
+        }
+      }
+    },
+    "entryPoint": {
+      "type": "object",
+      "properties": {
+        "entryPointType": {
+          "type": "string",
+          "description": "The entry point type, such as video, phone, etc."
+        },
+        "uri": {
+          "type": "string", 
+          "description": "The URI to join."
+        },
+        "label": {
+          "type": "string",
+          "description": "The label for the URI."
+        },
+        "pin": {
+          "type": "string",
+          "description": "The PIN to access the conference."
+        },
+        "accessCode": {
+          "type": "string",
+          "description": "The access code to access the conference."
+        },
+        "meetingCode": {
+          "type": "string", 
+          "description": "The meeting code to access the conference."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password to access the conference." 
+        },
+        "region": {
+          "type": "string",
+          "description": "The region in which the conference is held."
+        }
+      },
+      "required": [
+        "entryPointType",
+        "uri"  
+      ]
+    },
+    "conferenceSolution": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The conference solution type."
+        },
+        "name": {
+          "type": "string",
+          "description": "The conference solution name."
+        },
+        "iconUri": {
+          "type": "string",
+          "description": "The icon URI for the solution."
+        }
+      },
+      "required": [
+        "key"
+      ]  
+    },
+    "eventSource": {  
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of event source."
+        },
+        "url": {
+          "type": "string", 
+          "description": "URL of event source."
+        }
+      }
+    },
+    "eventAttachment": {
+      "type": "object", 
+      "properties": {
+        "fileUrl": {
+          "type": "string",
+          "description": "URL link to the attachment."
+        },
+        "title": {
+          "type": "string",
+          "description": "Attachment title."
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "Internet media type of the attachment."
+        },
+        "iconLink": {
+          "type": "string",
+          "description": "URL link to the attachment icon."  
+        },
+        "fileId": {
+          "type": "string",
+          "description": "ID of the attached file."
+        },
+        "fileSize": {
+          "type": "string",
+          "description": "Size of the attachment."
+        }
+      },
+      "required": [
+        "fileUrl"
+      ]
+    }, 
+    "eventReminder": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "

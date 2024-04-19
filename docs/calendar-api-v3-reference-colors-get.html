@@ -1,0 +1,258 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Colors: get
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Authorization optional.
+
+Returns the color definitions for calendars and events.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+GET https://www.googleapis.com/calendar/v3/colors
+
+
+  Authorization
+  This request allows authorization with at least one of the following scopes:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+      https://www.googleapis.com/auth/calendar.readonly
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+  Do not supply a request body with this method.
+
+
+
+
+  Response
+
+  If successful, this method returns a Colors resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby.NET
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;import com.google.api.services.calendar.model.Colors;import com.google.api.services.calendar.model.ColorDefinition;import java.util.Map;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Retrieve color definitions for calendars and eventsColors colors = service.colors().get().execute();// Print available calendar list entry colorsfor (Map.Entry<String, ColorDefinition> color : colors.getCalendar().entrySet()) {  System.out.println("ColorId : " + color.getKey());  System.out.println("  Background: " + color.getValue().getBackground());  System.out.println("  Foreground: " + color.getValue().getForeground());}// Print available event colorsfor (Map.Entry<String, ColorDefinition> color : colors.getEvent().entrySet()) {  System.out.println("ColorId : " + color.getKey());  System.out.println("  Background: " + color.getValue().getBackground());  System.out.println("  Foreground: " + color.getValue().getForeground());}
+
+
+  
+  Uses the Python client library.
+  colors = service.colors().get().execute()# Print available calendarListEntry colors.for id, color in colors['calendar'].iteritem():  print 'colorId: %s' % id  print '  Background: %s' % color['background']  print '  Foreground: %s' % color['foreground']# Print available event colors.for id, color in colors['event'].iteritem():  print 'colorId: %s' % id  print '  Background: %s' % color['background']  print '  Foreground: %s' % color['foreground']
+
+
+  
+  Uses the PHP client library.
+  $colors = $service->colors->get();// Print available calendarListEntry colors.foreach ($colors->getCalendar() as $key => $color) {  print "colorId : {$key}\n";  print "  Background: {$color->getBackground()}\n";  print "  Foreground: {$color->getForeground()}\n";}// Print available event colors.foreach ($colors->getEvent() as $key => $color) {  print "colorId : {$key}\n";  print "  Background: {$color->getBackground()}\n";  print "  Foreground: {$color->getForeground()}\n";}
+
+
+  
+  Uses the Ruby client library.
+  result = client.get_color()# Print available calendarListEntry colors.result.calendar.keys.each do |key|  print "colorId: #{key}\n"  print "  Background: #{result.calendar[key].background}\n"  print "  Foreground: #{result.calendar[key].foreground}\n"end# Print available event colors.result.event.keys.each do |key|  print "colorId: #{key}\n"  print "  Background: #{result.event[key].background}\n"  print "  Foreground: #{result.event[key].foreground}\n"end
+
+
+  
+  Uses the .NET client library.
+  Colors colors = service.Colors.Get().Fetch();// Print available calendarListEntry colors.foreach (KeyValuePair<String, ColorDefinition> color in colors.Calendar) {  System.out.println("ColorId : " + color.Key);  System.out.println("  Background: " + color.Value.Background);  System.out.println("  Foreground: " + color.Value.Foreground);}// Print available event colors.foreach (KeyValuePair<String, ColorDefinition> color in colors.Event) {  System.out.println("ColorId : " + color.Key);  System.out.println("  Background: " + color.Value.Background);  System.out.println("  Foreground: " + color.Value.Foreground);}
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  

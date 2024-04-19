@@ -1,0 +1,280 @@
+
+  
+  
+  
+  
+  
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+  
+    
+        Home
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Workspace
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Google Calendar
+      
+  
+  
+    
+  
+  
+  
+    
+      
+      
+    
+    
+    
+      
+  
+    
+        Reference
+      
+  
+  
+    
+  
+  
+
+    
+      
+    Was this helpful?
+  
+    
+  
+  
+    
+
+  
+  
+    
+    Send feedback
+  
+  
+
+  
+      Calendars: insert
+  
+
+        
+        bookmark_borderbookmark
+
+        
+          
+          Stay organized with collections
+        
+        
+          
+          Save and categorize content based on your preferences.
+        
+      
+  
+  
+
+  On this pageRequestHTTP requestAuthorizationRequest bodyResponseExamplesTry it
+  
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+Note:
+Requires authorization.
+
+Creates a secondary calendar.
+Try it now or see an example.
+
+
+
+
+
+  Request
+  HTTP request
+POST https://www.googleapis.com/calendar/v3/calendars
+
+
+  Authorization
+  This request requires authorization with the following scope:
+  
+    Scope
+    
+      https://www.googleapis.com/auth/calendar
+    
+  
+For more information, see the authentication and authorization page.
+
+  Request body
+
+
+
+
+  In the request body, supply a Calendars resource with the following properties:
+  
+      
+        
+          Property name
+          Value
+          Description
+          Notes
+        
+      
+    
+    
+      Required Properties
+    
+      
+        summary
+        string
+        Title of the calendar.
+        
+          writable
+        
+      
+
+    
+  
+
+
+
+
+
+  Response
+
+  If successful, this method returns a Calendars resource in the response body.
+
+
+
+Examples
+Note: The code examples available for this method do not represent all supported programming languages (see the client libraries page for a list of supported languages).
+
+
+JavaPythonPHPRuby
+          More
+          
+          
+        
+  
+  Uses the Java client library.
+  import com.google.api.services.calendar.Calendar;// ...// Initialize Calendar service with valid OAuth credentialsCalendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)    .setApplicationName("applicationName").build();// Create a new calendarcom.google.api.services.calendar.model.Calendar calendar = new Calendar();calendar.setSummary("calendarSummary");calendar.setTimeZone("America/Los_Angeles");// Insert the new calendarCalendar createdCalendar = service.calendars().insert(calendar).execute();System.out.println(createdCalendar.getId());
+
+
+  
+  Uses the Python client library.
+  calendar = {    'summary': 'calendarSummary',    'timeZone': 'America/Los_Angeles'}created_calendar = service.calendars().insert(body=calendar).execute()print created_calendar['id']
+
+
+  
+  Uses the PHP client library.
+  $calendar = new Google_Service_Calendar_Calendar();$calendar->setSummary('calendarSummary');$calendar->setTimeZone('America/Los_Angeles');$createdCalendar = $service->calendars->insert($calendar);echo $createdCalendar->getId();
+
+
+  
+  Uses the Ruby client library.
+  calendar = Google::Apis::CalendarV3::Calendar.new(  summary: 'calendarSummary',  time_zone: 'America/Los_Angeles')result = client.insert_calendar(calendar)print result.id
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+  
+
+  
+    
+  
+
+
+  
+
+  
+    
+      
+      
+    
+    
+      
+    Was this helpful?
+  
+       
+         
+
+  
+  
+    
+    Send feedback
+  
+  
+
+       
+    
+    
+      
+    
+  
+
+  
+  
